@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration
+        PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+<log4j:configuration>
+    <!-- 控制台Appender -->
+    <appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+        <!-- 单纯的设置字符串的时候，用param -->
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%d{HH:mm:ss.SSS} [%-5p] %c: %m%n"/>
+        </layout>
+    </appender>
+    <!-- logger -->
+    <!-- 最终父Appender：rootLogger -->
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="myConsole"/>
+    </root>
+</log4j:configuration>

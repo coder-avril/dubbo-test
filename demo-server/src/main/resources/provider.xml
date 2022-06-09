@@ -1,0 +1,20 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <!--1 配置应用名字： 方便应用的监控管理-->
+    <dubbo:application name="demo-server">
+        <dubbo:parameter key="qos.enable" value="true"/>
+        <dubbo:parameter key="qos.accept.foreign.ip" value="false"/>
+        <dubbo:parameter key="qos.port" value="22222"/>
+    </dubbo:application>
+    <!--2 配置注册中心的地址-->
+    <dubbo:registry protocol="zookeeper" address="192.168.0.10:2181,192.168.0.11:2181,192.168.0.12:2181" timeout="100000"/>
+    <!--3 配置通信的协议和通信端口-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!--4 配置提供服务的Bean对象-->
+    <bean id="helloService" class="com.lding.ds.impl.HelloServiceImpl"/>
+    <!--5 申明提供的服务 -->
+    <dubbo:service interface="com.lding.da.service.IHelloService" ref="helloService"/>
+</beans>
